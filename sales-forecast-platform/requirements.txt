@@ -8,3 +8,4 @@ holidays>=0.14
 joblib>=1.0.0
 openpyxl>=3.0.0
 scipy>=1.7.0
+xgboost>=1.5.0
