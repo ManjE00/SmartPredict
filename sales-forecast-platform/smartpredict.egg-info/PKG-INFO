@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: smartpredict
+Version: 0.1
+Requires-Dist: streamlit
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: plotly
+Requires-Dist: holidays
+Dynamic: requires-dist
