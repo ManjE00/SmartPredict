@@ -69,20 +69,20 @@ def forecast_section(processed_data, forecast_months, future_ads_spent, future_c
 
                     with st.expander(f"Understanding the Accuracy (R-squared) for {model_choice}"):
                         st.info(f"""
-                                                The accuracy score (R-squared) represents the proportion of the variance in the actual sales data that the {model_choice} model has captured.
+                                            The accuracy score (R-squared) represents the proportion of the variance in the actual sales data that the {model_choice} model has captured.
 
-                                                - A score closer to 100% (or 1.0) indicates that the model explains a large portion of the variability in past sales, and its predictions are likely to be closer to the actual values.
-                                                - A score closer to 0% (or 0.0) suggests that the model does not explain much of the variability in past sales, and its predictions might not be very reliable.
-                                                - A negative score indicates that the model performs worse than simply predicting the average of the historical sales.
+                                            - A score closer to 100% (or 1.0) indicates that the model explains a large portion of the variability in past sales, and its predictions are likely to be closer to the actual values.
+                                            - A score closer to 0% (or 0.0) suggests that the model does not explain much of the variability in past sales, and its predictions might not be very reliable.
+                                            - A negative score indicates that the model performs worse than simply predicting the average of the historical sales.
 
-                                                **A score of {accuracy:.2f}% is what we observed on the test data.** This gives an indication of how well the model might perform on unseen future data.
+                                            **A score of {accuracy:.2f}% is what we observed on the test data.** This gives an indication of how well the model might perform on unseen future data.
 
-                                                It's recommended to consider the MAE, MSE, and RMSE as well, which give you an idea of the magnitude of the errors in Ringgit Malaysia.
-                                                """)
+                                            It's recommended to consider the MAE, MSE, and RMSE as well, which give you an idea of the magnitude of the errors in Ringgit Malaysia.
+                                            """)
 
                     st.subheader("📈 Sales Forecast Visualization")
                     st.plotly_chart(create_sales_visualization(processed_data.reset_index(), forecast_result),
-                                        use_container_width=True)
+                                     use_container_width=True)
 
                     st.subheader("Feature Importance (Random Forest)")
                     if 'features' in locals():  # Check if features exists
@@ -149,20 +149,20 @@ def forecast_section(processed_data, forecast_months, future_ads_spent, future_c
 
                     with st.expander(f"Understanding the Accuracy (R-squared) for {model_choice}"):
                         st.info(f"""
-                                                The accuracy score (R-squared) represents the proportion of the variance in the actual sales data that the {model_choice} model has captured.
+                                            The accuracy score (R-squared) represents the proportion of the variance in the actual sales data that the {model_choice} model has captured.
 
-                                                - A score closer to 100% (or 1.0) indicates that the model explains a large portion of the variability in past sales, and its predictions are likely to be closer to the actual values.
-                                                - A score closer to 0% (or 0.0) suggests that the model does not explain much of the variability in past sales, and its predictions might not be very reliable.
-                                                - A negative score indicates that the model performs worse than simply predicting the average of the historical sales.
+                                            - A score closer to 100% (or 1.0) indicates that the model explains a large portion of the variability in past sales, and its predictions are likely to be closer to the actual values.
+                                            - A score closer to 0% (or 0.0) suggests that the model does not explain much of the variability in past sales, and its predictions might not be very reliable.
+                                            - A negative score indicates that the model performs worse than simply predicting the average of the historical sales.
 
-                                                **A score of {accuracy:.2f}% is what we observed on the test data.** This gives an indication of how well the model might perform on unseen future data.
+                                            **A score of {accuracy:.2f}% is what we observed on the test data.** This gives an indication of how well the model might perform on unseen future data.
 
-                                                It's recommended to consider the MAE, MSE, and RMSE as well, which give you an idea of the magnitude of the errors in Ringgit Malaysia.
-                                                """)
+                                            It's recommended to consider the MAE, MSE, and RMSE as well, which give you an idea of the magnitude of the errors in Ringgit Malaysia.
+                                            """)
 
                     st.subheader("📈 Sales Forecast Visualization")
                     st.plotly_chart(create_sales_visualization(processed_data.reset_index(), forecast_result),
-                                        use_container_width=True)
+                                     use_container_width=True)
 
                     st.subheader("Feature Importance (Gradient Boosting)")
                     if hasattr(trained_model, 'feature_importances_') and features is not None:
@@ -254,10 +254,10 @@ if 'cleaned_data' in st.session_state:
             st.error("Error: The 'month' column is missing in the processed data in the forecast page.")
             logging.error("Error: The 'month' column is missing in the processed data in the forecast page.")
     else:
-        st.error("Error: The data in st.session_state['cleaned_data'] is not a DataFrame.")
-        logging.error("Error: The data in st.session_state['cleaned_data'] is not a DataFrame.")
-        # Force a re-run to potentially trigger the data upload again
-        st.rerun()
+        st.error("Error: The data in st.session_state['cleaned_data'] is not a DataFrame. Please ensure you upload a valid CSV file on the home page.")
+        logging.error(f"Error: The data in st.session_state['cleaned_data'] is not a DataFrame. Type: {type(st.session_state.get('cleaned_data'))}, Value: {st.session_state.get('cleaned_data')}")
+        # Optionally, don't force a rerun immediately, let the user correct the upload.
+        # st.rerun()
 else:
     st.info("Please upload historical data on the main page to generate a forecast.")
     logging.info("No data uploaded yet, prompting user to upload.")
