@@ -84,15 +84,16 @@ def forecast_section(processed_data, forecast_months, future_ads_spent, future_c
                     st.plotly_chart(create_sales_visualization(processed_data.reset_index(), forecast_result),
                                      use_container_width=True)
 
-                    st.subheader("Feature Importance (Random Forest)")
-                    if 'features' in locals():  # Check if features exists
-                        importances = trained_model.feature_importances_
-                        feature_names = features
-                        feature_importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances})
-                        feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
-                        st.dataframe(feature_importance_df)
-                    else:
-                        st.info("Feature importance not available.")
+                    # REMOVE FEATURE IMPORTANCE SECTION FOR RANDOM FOREST
+                    # st.subheader("Feature Importance (Random Forest)")
+                    # if 'features' in locals():  # Check if features exists
+                    #     importances = trained_model.feature_importances_
+                    #     feature_names = features
+                    #     feature_importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances})
+                    #     feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
+                    #     st.dataframe(feature_importance_df)
+                    # else:
+                    #     st.info("Feature importance not available.")
 
                     # Focus Notification (Random Forest)
                     if forecast_result['Forecasted Sales (RM)'].mean() > last_historical_sales:
@@ -164,14 +165,15 @@ def forecast_section(processed_data, forecast_months, future_ads_spent, future_c
                     st.plotly_chart(create_sales_visualization(processed_data.reset_index(), forecast_result),
                                      use_container_width=True)
 
-                    st.subheader("Feature Importance (Gradient Boosting)")
-                    if hasattr(trained_model, 'feature_importances_') and features is not None:
-                        importances = trained_model.feature_importances_
-                        feature_importance_df = pd.DataFrame({'Feature': features, 'Importance': importances})
-                        feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
-                        st.dataframe(feature_importance_df)
-                    else:
-                        st.info("Feature importance not available for this model or features are missing.")
+                    # REMOVE FEATURE IMPORTANCE SECTION FOR GRADIENT BOOSTING
+                    # st.subheader("Feature Importance (Gradient Boosting)")
+                    # if hasattr(trained_model, 'feature_importances_') and features is not None:
+                    #     importances = trained_model.feature_importances_
+                    #     feature_importance_df = pd.DataFrame({'Feature': features, 'Importance': importances})
+                    #     feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
+                    #     st.dataframe(feature_importance_df)
+                    # else:
+                    #     st.info("Feature importance not available for this model or features are missing.")
 
                     # Focus Notification (Gradient Boosting)
                     if forecast_result['Forecasted Sales (RM)'].mean() > last_historical_sales:
