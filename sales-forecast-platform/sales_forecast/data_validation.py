@@ -56,12 +56,14 @@ def clean_data(data):
     cleaned_data = cleaned_data.reset_index(drop=True)
     print("Inside clean_data: Type after reset_index:", type(cleaned_data)) # DEBUG
 
-    cleaned_data_with_features = create_features(cleaned_data.copy())
-    print("Inside clean_data: Type after create_features:", type(cleaned_data_with_features)) # DEBUG
-    print("Inside clean_data: Shape after create_features:", cleaned_data_with_features.shape) # DEBUG
+    #  ISOLATE THE PROBLEM (Step 4)
+    # cleaned_data_with_features = create_features(cleaned_data.copy())  # COMMENT OUT THIS LINE
+    # print("Inside clean_data: Type after create_features:", type(cleaned_data_with_features)) # DEBUG
+    # print("Inside clean_data: Shape after create_features:", cleaned_data_with_features.shape) # DEBUG
 
-    print("Inside clean_data: Type before return:", type(cleaned_data_with_features)) # DEBUG
-    return cleaned_data_with_features
+    # print("Inside clean_data: Type before return:", type(cleaned_data_with_features)) # DEBUG
+    # return cleaned_data_with_features
+    return cleaned_data # Just return the cleaned data WITHOUT features
 
 def detect_outliers(data, threshold=3):
     z_scores = np.abs(stats.zscore(data[['sales', 'ads_spent', 'customer_visits']]))
